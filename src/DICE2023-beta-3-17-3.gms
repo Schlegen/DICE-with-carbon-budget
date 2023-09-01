@@ -142,6 +142,7 @@ VARIABLES
         ABATECOST(t)    Cost of emissions reductions  (trillions 2019 USD per year)
         MCABATE(t)      Marginal cost of abatement (2019$ per ton CO2)
         CCATOT(t)       Total carbon emissions (GtC)
+        CCO2ETOT(t)     Total CO2e emissions including abateable nonCO2 GHG since 2020 (GtCO2)
         PERIODU(t)      One period utility function
         CPRICE(t)       Carbon price (2019$ per ton of CO2)
         CEMUTOTPER(t)   Period utility
@@ -151,6 +152,7 @@ NONNEGATIVE VARIABLES  MIU, TATM, MAT, MU, ML, Y, YNET, YGROSS, C, K, I;
 EQUATIONS
 *Emissions and Damages
         CCATOTEQ(t)      Cumulative total carbon emissions
+        CCO2ETOTEQ(t)    Cumulative total CO2 equivalent emissions since 2020
         DAMFRACEQ(t)     Equation for damage fraction
         DAMEQ(t)         Damage equation
         ABATEEQ(t)       Cost of emissions reductions equation
@@ -180,6 +182,7 @@ $include Include\FAIR-beta-3-17.gms
  eco2Eeq(t)..         ECO2E(t)       =E= (sigma(t)*YGROSS(t) + eland(t) + CO2E_GHGabateB(t))*(1-(MIU(t)));
  F_GHGabateEQ(t+1)..  F_GHGabate(t+1) =E= Fcoef2*F_GHGabate(t)+ Fcoef1*CO2E_GHGabateB(t)*(1-(MIU(t)));
  ccatoteq(t+1)..      CCATOT(t+1)    =E= CCATOT(t) +  ECO2(T)*(5/3.666) ;
+ cco2etoteq(t+1)..    CCO2ETOT(t+1)  =E= CCO2ETOT(t) + ECO2E(T)*5 ;
  damfraceq(t) ..      DAMFRAC(t)     =E= (a1*(TATM(t)))+(a2*(TATM(t))**a3) ;
  dameq(t)..           DAMAGES(t)     =E= YGROSS(t) * DAMFRAC(t);
  abateeq(T)..         ABATECOST(T)   =E= YGROSS(T) * COST1TOT(T) * (MIU(T)**EXPCOST2);
@@ -213,6 +216,7 @@ ri.fx(tlast) = .014;
 
 * Initial conditions
 ccatot.fx(tfirst) = CumEmiss0;
+cco2etot.fx(tfirst) = 0;
 k.FX(tfirst)      = k0;
 F_GHGabate.fx(tfirst) = F_GHGabate2020;
 
