@@ -8,7 +8,7 @@ $offtext
 
 $title        May 15, 2023 (DICE2023-beta-3-17-3.gms)
 
-set        t  Time periods (5 years per period)                     /1*101/
+set        t  Time periods (5 years per period)                     /1*17/
 
 PARAMETERS
 ** If optimal control
