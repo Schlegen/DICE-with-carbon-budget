@@ -289,6 +289,11 @@ $include Include\def_DISC1%-b-3-17.gms
 $include Include\put-DISC1%-b-3-17.gms
 $include Include\put_list_module-b-3-17.gms
 
+* 1000 Gt limit on 2020-2100 CO2 emissions
+$include Include\def-CO2e1000-b-3-17.gms
+$include Include\put-CO2e1000-b-3-17.gms
+$include Include\put_list_module-b-3-17.gms
+
 *DISPLAY FOR MAJOR VARIABLES
 option decimals = 5;
 display cc.m,kk.m,cost1tot, pbacktime, sigmatot,miuup;
