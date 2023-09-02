@@ -19,3 +19,5 @@ abaterat(t) = abatecost.l(t)/y.l(t);
 atfrac2020(t) = ((mat.l(t)-mat0)/(ccatot.l(t)+.00001-CumEmiss0  ));
 atfrac1765(t) = ((mat.l(t)-mateq)/(.00001+ccatot.l(t)  ));
 FORC_CO2(t) = fco22x*((log((MAT.l(t)/mateq))/log(2)));
+
+cco2etot.up(t)=100000;

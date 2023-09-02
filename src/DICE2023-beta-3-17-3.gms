@@ -249,6 +249,11 @@ $include Include\def-T15-b-3-17.gms
 $include Include\put-T15-b-3-17.gms
 $include Include\put_list_module-b-3-17.gms
 
+* 1000 Gt limit on 2020-2100 CO2 emissions
+$include Include\def-CO2e1000-b-3-17.gms
+$include Include\put-CO2e1000-b-3-17.gms
+$include Include\put_list_module-b-3-17.gms
+
 * Alternative damages
 $include Include\def-altdam-b-3-17.gms
 $include Include\put-altdam-b-3-17.gms
@@ -287,11 +292,6 @@ $include Include\put_list_module-b-3-17.gms
 * 1% DISCOUNT RATE
 $include Include\def_DISC1%-b-3-17.gms
 $include Include\put-DISC1%-b-3-17.gms
-$include Include\put_list_module-b-3-17.gms
-
-* 1000 Gt limit on 2020-2100 CO2 emissions
-$include Include\def-CO2e1000-b-3-17.gms
-$include Include\put-CO2e1000-b-3-17.gms
 $include Include\put_list_module-b-3-17.gms
 
 *DISPLAY FOR MAJOR VARIABLES
