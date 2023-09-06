@@ -153,6 +153,7 @@ EQUATIONS
 *Emissions and Damages
         CCATOTEQ(t)      Cumulative total carbon emissions
         CCO2ETOTEQ(t)    Cumulative total CO2 equivalent emissions since 2020
+        CCO2ETOTEQ0      Initial condition for cumulative total CO2 equivalent emissions since 2020
         DAMFRACEQ(t)     Equation for damage fraction
         DAMEQ(t)         Damage equation
         ABATEEQ(t)       Cost of emissions reductions equation
@@ -182,7 +183,8 @@ $include Include\FAIR-beta-3-17.gms
  eco2Eeq(t)..         ECO2E(t)       =E= (sigma(t)*YGROSS(t) + eland(t) + CO2E_GHGabateB(t))*(1-(MIU(t)));
  F_GHGabateEQ(t+1)..  F_GHGabate(t+1) =E= Fcoef2*F_GHGabate(t)+ Fcoef1*CO2E_GHGabateB(t)*(1-(MIU(t)));
  ccatoteq(t+1)..      CCATOT(t+1)    =E= CCATOT(t) +  ECO2(T)*(5/3.666) ;
- cco2etoteq(t+1)..    CCO2ETOT(t+1)  =E= CCO2ETOT(t) + ECO2E(T)*5 ;
+ cco2etoteq(t+1)..    CCO2ETOT(t+1)  =E= CCO2ETOT(t) + ECO2E(t)*4 + ECO2E(t+1);
+ cco2etoteq0(tfirst)..   CCO2ETOT(tfirst) =E= eco2e(tfirst);
  damfraceq(t) ..      DAMFRAC(t)     =E= (a1*(TATM(t)))+(a2*(TATM(t))**a3) ;
  dameq(t)..           DAMAGES(t)     =E= YGROSS(t) * DAMFRAC(t);
  abateeq(T)..         ABATECOST(T)   =E= YGROSS(T) * COST1TOT(T) * (MIU(T)**EXPCOST2);
@@ -216,7 +218,6 @@ ri.fx(tlast) = .014;
 
 * Initial conditions
 ccatot.fx(tfirst) = CumEmiss0;
-cco2etot.fx(tfirst) = 0;
 k.FX(tfirst)      = k0;
 F_GHGabate.fx(tfirst) = F_GHGabate2020;
 
@@ -249,7 +250,7 @@ $include Include\def-T15-b-3-17.gms
 $include Include\put-T15-b-3-17.gms
 $include Include\put_list_module-b-3-17.gms
 
-* 1000 Gt limit on 2020-2100 CO2 emissions
+* 1000 Gt limit on 2020-2100 CO2e emissions
 $include Include\def-CO2e1000-b-3-17.gms
 $include Include\put-CO2e1000-b-3-17.gms
 $include Include\put_list_module-b-3-17.gms
