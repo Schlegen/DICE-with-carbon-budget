@@ -1,3 +1,8 @@
 *.lst
 *.csv
 *.csv#
+*.ods#
+*.lxi
+*.log
+*.log~[0-9]
+*.gsp
