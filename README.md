@@ -9,19 +9,23 @@ As the model was too heavy to run with my demonstration licence, I shortenned th
 
 ### Creation of a new variable and equations
 
-In the `DICE2023-beta-3-17-3.gms` file, I added a new variable `CCO2ETOT(t)` representing the total CO2e emissions (including abateable nonCO2 GHG) since 2020 in GtCO2. Its values are set by the following lines :
+In the `DICE2023-beta-3-17-3.gms` file, I added a new variable `CCO2ETOT(t)` representing the total CO2e emited (including abateable nonCO2 GHG) since 01-01-2020 at the end of year `t` in GtCO2. Its values are set by the following equations :
 
 ```
-cco2etoteq(t+1)..  CCO2ETOT(t+1) =E= CCO2ETOT(t) + ECO2E(T)*5;
-cco2etot.fx(tfirst) = 0;
+ cco2etoteq0(tfirst)..   CCO2ETOT(tfirst) =E= ECO2E(tfirst);
+ cco2etoteq(t+1)..    CCO2ETOT(t+1)  =E= CCO2ETOT(t) + ECO2E(t)*4 + ECO2E(t+1);
 ```
+
+Here, the first equation `cco2etoteq0` sets the values of the cumulative emissions in 2020 to the values of the emissions in 2020. The equation `cco2etoteq` runs the dynamics of the computation of `cco2etoteq` (as the timestep is 5 years).
+
+With these equations, we see that the value of `cco2etot` in 2100 corresponds to the cumulative emissions between 01-01-2020 and 31-12-2100.
 
 ### Addition of a new variable to the ouputs
 
 I added two lines in the file `includes/put_list_module-b-3-17.gms`, to plot `cco2etot` values.
 
 ```
-put / "Cumulative CO2e emissions since 2020, GtC " ;
+put / "Cumulative CO2e emissions since 2020, GtCO2 " ;
 Loop (T, put cco2etot.l(t));
 ```
 
@@ -61,9 +65,8 @@ We can see that in our new scenario, the mass of $CO_2$ emitted between 2020 and
 <img src="simulation_plots/Cumulative emissions.png" width="400">
 
 
-Finally, the following chart represents the evolution of the temperature in the thre scenarios.
+Finally, the following chart represents the evolution of the temperature in the three scenarios.
 we can see that the new scenario leads to a global warming of 1.55 degrees.
 
-TODO : correct the bug in the temperatures (due to the fact the implemented carbon budget is between 01/01/2020 and 31/12/2100).
 
 <img src="simulation_plots/Temperatures.png" width="400">

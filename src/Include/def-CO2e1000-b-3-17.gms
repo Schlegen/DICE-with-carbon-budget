@@ -5,7 +5,6 @@ ifopt=1;
 
 cco2etot.up(t)=1000;
 
-
 * Solve
 solve CO2 maximizing UTILITY using nlp ;
 solve CO2 maximizing UTILITY using nlp ;
