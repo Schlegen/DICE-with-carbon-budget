@@ -91,7 +91,7 @@ put / "Land emissions, GtCO2/year" ;
 Loop (T, put eland(t));
 put / "Cumulative CO2 emissions, GtC " ;
 Loop (T, put ccatot.l(t));
-put / "Cumulative CO2e emissions since 2020, GtC " ;
+put / "Cumulative CO2e emissions since 2020, GtC02 " ;
 Loop (T, put cco2etot.l(t));
 put / "Atmospheric fraction CO2 since 1765 " ;
 Loop (T, put  atfrac1765(t) );
